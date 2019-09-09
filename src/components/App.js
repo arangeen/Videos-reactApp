@@ -2,6 +2,7 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import youtube from "../apis/youtube";
 import VideoList from "./VideoList";
+import VideoDetail from "./VideoDetail";
 
 class App extends React.Component {
   state = { videos: [], selectedVideo: null };
@@ -20,7 +21,7 @@ class App extends React.Component {
 
   // new callback that will be called everytime video is selected
   onVideoSelect = video => {
-    console.log("From the App!".video);
+    this.setState({ selectedVideo: video });
   };
 
   render() {
@@ -30,8 +31,8 @@ class App extends React.Component {
       // remember you can name onSubmit and onVideoSelect
       // anything you want here
       <div className="ui container">
-        <SearchBar onSubmit={this.onTermSubmit} />I have{" "}
-        {this.state.videos.length} videos.
+        <SearchBar onSubmit={this.onTermSubmit} />
+        <VideoDetail video={this.state.selectedVideo} />
         <VideoList
           onVideoSelect={this.onVideoSelect}
           videos={this.state.videos}
