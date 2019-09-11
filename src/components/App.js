@@ -6,6 +6,10 @@ import VideoDetail from "./VideoDetail";
 
 class App extends React.Component {
   state = { videos: [], selectedVideo: null };
+
+  componentDidMount() {
+    this.onTermSubmit("cars");
+  }
   //callback function that will be called anytime
   // someone submits a SearchBar
   onTermSubmit = async term => {
@@ -16,7 +20,10 @@ class App extends React.Component {
     });
 
     //console.log(response) to view data, items
-    this.setState({ videos: response.data.items });
+    this.setState({
+      videos: response.data.items,
+      selectedVideo: response.data.items[0]
+    });
   };
 
   // new callback that will be called everytime video is selected
